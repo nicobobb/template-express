@@ -1,1 +1,8 @@
-console.log('Mi nueva aplicación en JavaScript');
+const express = require('express');
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hola desde mi App con Express.js!'));
+
+app.listen(port, () => console.log(`Escuchando al puerto ${port}!`));
