@@ -7,15 +7,18 @@ const port = 3000;
 app.get('/', (req, res) => res.send('Hola desde mi App con Express.js!'));
 
 app.get('/productos', (req,res) => { 
-    res.json([{
-        nombre: faker.commerce.product(),
-        precio: '$500',
-        cantidad: '1'
-    }, {
-        nombre: faker.commerce.product(),
-        precio: '$100',
-        cantidad: '2'
-    }]);
+   const productos = []
+   const { size } = req.query;
+   const limit = size || 10 
+    for (let i = 0; i < limit; i++) {
+        productos.push({
+            nombre: faker.commerce.productName(),
+            precio: faker.commerce.price(),
+            descripcion: faker.commerce.productDescription(),
+            image: faker.image.imageUrl()
+        });
+    }
+    res.json(productos);
 });
 
 app.get('/productos/:id', (req, res) => {
