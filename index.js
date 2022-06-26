@@ -1,4 +1,5 @@
 const express = require('express');
+const { faker } = require("@faker-js/faker");
 
 const app = express();
 const port = 3000;
@@ -7,11 +8,11 @@ app.get('/', (req, res) => res.send('Hola desde mi App con Express.js!'));
 
 app.get('/productos', (req,res) => { 
     res.json([{
-        nombre: 'Monitor',
+        nombre: faker.commerce.product(),
         precio: '$500',
         cantidad: '1'
     }, {
-        nombre: 'Teclado',
+        nombre: faker.commerce.product(),
         precio: '$100',
         cantidad: '2'
     }]);
@@ -21,7 +22,7 @@ app.get('/productos/:id', (req, res) => {
     const { id } =req.params;
     res.json({
         id: id,
-        nombre: 'Monitor',
+        nombre: faker.commerce.product(),
         precio: '$500',
         cantidad: '1'
     });
